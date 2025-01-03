@@ -2,34 +2,39 @@ package com.example.hostmonitor.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 @Service
 @RequiredArgsConstructor
 public class PingServiceImpl implements PingService {
 
     @Override
-    public String pingHost(String host) {
-        String result;
-        try{
-            ProcessBuilder builder = new ProcessBuilder("ping", "-c", "1", host);
-            Process process = builder.start();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
-            process.waitFor();
-            result = output.toString();
-        } catch (Exception e){
+    public String pingHost(String domain) {
+        long startTime = System.currentTimeMillis();  // 요청 시작 시간 기록
+        try {
+            URL url = new URL(domain);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(5000); // 타임아웃 5초
+            connection.setReadTimeout(5000);    // 타임아웃 5초
 
-            result = "PingServiceError : " + e.getMessage();
+            int responseCode = connection.getResponseCode();  // 응답 코드 확인
+
+            long endTime = System.currentTimeMillis();  // 응답을 받은 시간 기록
+            long latency = endTime - startTime;  // 레이턴시 계산
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                return "UP, 응답시간: " + latency + " ms";
+            } else {
+                return "DOWN, 응답시간: " + latency + " ms";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Exception DOWN";  // 예외 발생 시 DOWN
 
         }
 
-        return null;
     }
 }

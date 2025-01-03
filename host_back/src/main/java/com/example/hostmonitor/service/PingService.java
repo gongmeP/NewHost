@@ -1,6 +1,6 @@
 package com.example.hostmonitor.service;
 
 public interface PingService {
-    String pingHost(String host);
+    String pingHost(String domain);
 
 }
