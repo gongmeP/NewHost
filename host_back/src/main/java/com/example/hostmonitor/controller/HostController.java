@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,6 +31,12 @@ public class HostController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);  // 내용이 없으면 204 상태 코드 반환
         }
         return new ResponseEntity<>(hosts, HttpStatus.OK);  // 200 OK 상태 코드와 함께 리스트 반환
+    }
+
+    @PostMapping("/api/hosts/add")
+    public ResponseEntity<Host> saveHost(@RequestBody Host host) {
+        Host hosts = hostRepository.save(host); // 정보 저장
+        return new ResponseEntity<>(hosts, HttpStatus.OK);
     }
 
 

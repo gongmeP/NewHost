@@ -19,6 +19,7 @@ public class Host {
     private Long id;
     private String hostname;
     private String domain;
+    private String manager;
     private String status;  // UP, DOWN
     private Long latency; // 응답 시간 (ms)
     private LocalDateTime lastchecked; // 마지막 체크 시간

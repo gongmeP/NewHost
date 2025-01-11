@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axiosAPI, { API_URL } from '../axiosAPI.tsx';
+import { HostTS } from '../TSmodel/Hos.ts';
 
-interface Host {
-  id: number;
-  hostname: string;
-  status: string;
-  latency: number;
-  lastchecked: string | null;
-}
 
 const MainPage = ({}) => {
-  const [hosts, setHosts] = useState<Host[]>([]);
+  const [hosts, setHosts] = useState<HostTS[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태 추가
 
   useEffect(() => {

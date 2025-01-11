@@ -45,4 +45,15 @@ public class HostMonitorServiceImpl implements HostMonitorService {
             System.out.println("호스트 모니터 실패: " + e.getMessage());
         }
     }
+
+    @Override
+    public Host saveHost(Host host) {
+        try {
+            hostRepository.save(host);
+        } catch (Exception e) {
+            System.out.println("호스트 모니터 실패: " + e.getMessage());
+           return null;
+        }
+        return host;
+    }
 }

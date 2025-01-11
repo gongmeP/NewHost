@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { Button, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MainPage from '../../pages/MainPage.tsx';
+import HostAdd from '../ButtonComponents/HostAdd.tsx';
 
 const drawerWidth = 180;
 
@@ -103,9 +104,8 @@ export default function ResponsiveDrawer(props: Props) {
 
           <Toolbar>
             <Container>
-              <Button color="inherit" component={Link} to="/">
-                Add
-              </Button>
+              {/* 추가 컴포넌트 */}
+              <HostAdd></HostAdd>
               <Button color="inherit" component={Link} to="/reports">
                 Edit
               </Button>
@@ -128,12 +128,12 @@ export default function ResponsiveDrawer(props: Props) {
         <Drawer
           container={container}
           variant="temporary"
-          open={mobileOpen}
+          // open={mobileOpen}
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+          // ModalProps={{
+          //   keepMounted: true, // Better open performance on mobile.
+          // }}
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': {
