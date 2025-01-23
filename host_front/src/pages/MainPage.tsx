@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axiosAPI, { API_URL } from '../axiosAPI.tsx';
 import { HostTS } from '../TSmodel/Hos.ts';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 
 const MainPage = ({}) => {
   const [hosts, setHosts] = useState<HostTS[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태 추가
-
   useEffect(() => {
     const fetchHostsData = async () => {
       try {
@@ -33,30 +33,43 @@ const MainPage = ({}) => {
     return <div>Loading...</div>; // 데이터 로딩 중일 때 화면 표시
   }
 
+  
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>호스트명</th>
-            <th>상태</th>
-            <th>응답시간</th>
-            <th>마지막 체크</th>
-          </tr>
-        </thead>
-        <tbody>
-          {hosts.map((host) => (
-            <tr key={host.id}>
-              <td>{host.hostname}</td>
-              <td>{host.status}</td>
-              <td>{host.latency} ms</td>
-              <td>{host.lastchecked}</td>
-            </tr>
+    
+    <TableContainer >
+      <Table aria-label="collapsible table">
+      <TableHead>
+          <TableRow>
+          <TableCell />
+            <TableCell>호스트명</TableCell>
+            <TableCell>상태</TableCell>
+            <TableCell>응답시간</TableCell>
+            <TableCell>마지막 체크</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        {hosts.map((host) => (
+            <TableRow key={host.id}>
+              <TableCell />
+              <TableCell>{host.hostname}</TableCell>
+              <TableCell>{host.status}</TableCell>
+              <TableCell>{host.latency} ms</TableCell>
+              <TableCell>{host.lastchecked}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
-  );
+        </TableBody>
+       
+        
+      </Table>
+    </TableContainer>
+          </div>
+  )
 };
+
+    
+  
+  
+
 
 export default MainPage;
