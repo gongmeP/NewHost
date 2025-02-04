@@ -13,7 +13,7 @@ const Header = () => {
             Edit
           </Button>
           <Button color="inherit" component={Link} to="/settings">
-            Remote
+            Remove
           </Button>
           <Button color="inherit" component={Link} to="/settings">
             Refresh

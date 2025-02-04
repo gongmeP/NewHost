@@ -4,4 +4,5 @@ export type HostTS = {
   status: string;
   latency: number;
   lastchecked: string | null;
+  date: string | null;
 };

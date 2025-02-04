@@ -31,9 +31,7 @@ public class PingServiceImpl implements PingService {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Exception DOWN";  // 예외 발생 시 DOWN
-
+            return "DOWN (URL 오류!)";
         }
 
     }

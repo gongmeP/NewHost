@@ -45,7 +45,7 @@ const MainPage = ({}) => {
             <TableCell>호스트명</TableCell>
             <TableCell>상태</TableCell>
             <TableCell>응답시간</TableCell>
-            <TableCell>마지막 체크</TableCell>
+            <TableCell>호스트 추가 날짜</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,7 +55,7 @@ const MainPage = ({}) => {
               <TableCell>{host.hostname}</TableCell>
               <TableCell>{host.status}</TableCell>
               <TableCell>{host.latency} ms</TableCell>
-              <TableCell>{host.lastchecked}</TableCell>
+              <TableCell>{host.date}</TableCell>
             </TableRow>
           ))}
         </TableBody>
