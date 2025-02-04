@@ -1,8 +1,8 @@
 import './App.css';
 import { Route, Routes, Router } from 'react-router-dom';
-import MainPage from './pages/MainPage.tsx';
+import MainPage from './components/MainComponents/HostList.tsx';
 import Headers from './components/MainComponents/Header.tsx';
-import HeaderWithDrawer from './components/MainComponents/HeaderWithDrawer.tsx';
+import HeaderWithDrawer from './pages/MainPage.tsx';
 
 const App = () => {
   return (
